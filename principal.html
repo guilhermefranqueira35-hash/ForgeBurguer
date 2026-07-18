@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Artesanal - Cardápio Digital</title>
+    <link rel="stylesheet" href="cardapio.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">Forge<span class="highlight">Burger</span></h1>
+            <p class="status aberto">● Aberto agora</p>
+        </div>
+        
+    </header>
+        <div class="botaocanc">
+            <div id="cancel-order-btn" class="botaocanc hidden" style="display: none;">
+                <button type="button" onclick="dispararCancelamento()" style="background-color: #121212; color: white; font-weight: bold; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-size: 13px;">
+                    ❌ Cancelar Meu Pedido
+                </button>
+            </div>
+        </div>
+    <div id="view-menu">
+        <nav class="categories">
+            <a href="#burgers" class="category-btn active">Burgers</a>
+            <a href="#bebidas" class="category-btn">Bebidas</a>
+        </nav>
+
+        <main class="menu-container">
+            <section id="burgers" class="menu-section">
+                <h2 class="opcoes">Hambúrgueres Artesanais</h2>
+                <div class="menu-grid">
+                    <article class="product-card">
+                        <img src="Imagens/smashburger.webp" alt="Burger Smash" class="product-img">
+                        <div class="product-info">
+                            <h3>Smash X-Burger</h3>
+                            <p class="product-desc">Pão artesanal, blend bovino de 100g, queijo cheddar derretido e maionese da casa.</p>
+                            <div class="product-price-action">
+                                <span class="price">R$ 24,90</span>
+                                <button class="add-to-cart-btn" data-name="Smash X-Burger" data-price="24.90">+</button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <img src="Imagens/xbacon.webp" alt="Burger Smash" class="product-img">
+                        <div class="product-info">
+                            <h3>Smash X-Bacon</h3>
+                            <p class="product-desc">Pão artesanal, blend bovino de 100g, queijo cheddar derretido, maionese da casa e bacon crocante.</p>
+                            <div class="product-price-action">
+                                <span class="price">R$ 26,90</span>
+                                <button class="add-to-cart-btn" data-name="Smash X-Bacon" data-price="26.90">+</button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <img src="Imagens/xsalada.webp" alt="Burger Smash" class="product-img">
+                        <div class="product-info">
+                            <h3>Smash X-Salada</h3>
+                            <p class="product-desc">Pão artesanal, blend bovino de 100g, queijo cheddar derretido, maionese da casa, cebola roxa, picles, alface e tomate.</p>
+                            <div class="product-price-action">
+                                <span class="price">R$ 25,90</span>
+                                <button class="add-to-cart-btn" data-name="Smash X-Salada" data-price="25.90">+</button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <img src="Imagens/xtudo.webp" alt="Burger Smash" class="product-img">
+                        <div class="product-info">
+                            <h3>Smash X-Tudo</h3>
+                            <p class="product-desc">Pão artesanal, blend bovino de 100g, queijo cheddar derretido, maionese da casa, bacon crocante, ovo, alface, tomate cebla roxa e picles.</p>
+                            <div class="product-price-action">
+                                <span class="price">R$ 34,90</span>
+                                <button class="add-to-cart-btn" data-name="Smash X-Tudo" data-price="34.90">+</button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <img src="Imagens/queijoempanado.webp" alt="Burger Smash" class="product-img">
+                        <div class="product-info">
+                            <h3>Super Smash Burguer</h3>
+                            <p class="product-desc">Pão artesanal, blend bovino de 100g, queijo cheddar derretido, maionese da casa, além de uma deliciosa muzarela empanada crocante.</p>
+                            <div class="product-price-action">
+                                <span class="price">R$ 28,90</span>
+                                <button class="add-to-cart-btn" data-name="Super Smash Burguer" data-price="28.90">+</button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <img src="Imagens/forgeburguer.webp" alt="Burger Smash" class="product-img">
+                        <div class="product-info">
+                            <h3>Forge Burguer</h3>
+                            <p class="product-desc">Pão artesanal, dois blends bovino de 100g, queijo cheddar derretido, maionese da casa, e o molho forge, o molho especial da casa.</p>
+                            <div class="product-price-action">
+                                <span class="price">R$ 28,90</span>
+                                <button class="add-to-cart-btn" data-name="Forge Burguer" data-price="27.90">+</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="bebidas" class="menu-section hidden">
+                <h2 class="opcoes">Bebidas Geladas</h2>
+                <div class="menu-grid">
+                    <article class="product-card">
+                        <img src="Imagens/Cocacola.webp" alt="Coca-cola Lata" class="product-img">
+                        <div class="product-info">
+                            <h3>Coca-Cola Lata</h3>
+                            <p class="product-desc">Lata de 350ml trincando de gelada para acompanhar o seu burger.</p>
+                            <div class="product-price-action">
+                                <span class="price">R$ 6,00</span>
+                                <button class="add-to-cart-btn" data-name="Coca-Cola Lata" data-price="6.00">+</button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <img src="Imagens/Cocazero.webp" alt="Coca-cola Zero Lata" class="product-img">
+                        <div class="product-info">
+                            <h3>Coca-Cola Zero Lata</h3>
+                            <p class="product-desc">Lata de 350ml trincando de gelada zero açúcar para acompanhar o seu burger.</p>
+                            <div class="product-price-action">
+                                <span class="price">R$ 6,00</span>
+                                <button class="add-to-cart-btn" data-name="Coca-Cola Zero Lata" data-price="6.00">+</button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <img src="Imagens/sprite.webp" alt="Sprite Lata" class="product-img">
+                        <div class="product-info">
+                            <h3>Sprite Lata</h3>
+                            <p class="product-desc">Lata de 350ml trincando de gelada para acompanhar o seu burger.</p>
+                            <div class="product-price-action">
+                                <span class="price">R$ 6,00</span>
+                                <button class="add-to-cart-btn" data-name="Sprite Lata" data-price="6.00">+</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <div id="cart-footer" class="cart-footer hidden">
+            <div class="cart-info">
+                <span id="cart-count">0 itens</span>
+                <span id="cart-total" class="cart-total-price">R$ 0,00</span>
+            </div>
+            <button id="checkout-btn">Ver Sacola</button>
+        </div>
+    </div>
+
+    <div id="view-cart" class="cart-page-container hidden">
+        <div class="cart-page-header">
+            <button id="back-to-menu-btn" class="back-btn">← Voltar ao Cardápio</button>
+            <h2>Sua Sacola</h2>
+        </div>
+
+        <div id="cart-items-list" class="cart-items-list"></div>
+
+        <div class="cart-field">
+            <label for="client-name"><strong>Seu Nome:</strong></label>
+            <input type="text" id="client-name" placeholder="Digite seu nome completo" required>
+        </div>
+
+
+        <div class="obs-container">
+            <label for="cart-obs">Observações do Pedido:</label>
+            <textarea id="cart-obs" placeholder="Ex: Sem maionese, ponto da carne, trocar o queijo..."></textarea>
+        </div>
+
+        <div class="cart-page-footer">
+            <div class="total-container">
+                <span>Total do Pedido:</span>
+                <span id="cart-page-total-price">R$ 0,00</span>
+            </div>
+            <button id="send-kitchen-btn" class="kitchen-btn">Enviar Pedido para a Cozinha 🔥</button>
+        </div>
+    </div>
+    <script src="cardapio.js"></script>
+</body>
+</html>

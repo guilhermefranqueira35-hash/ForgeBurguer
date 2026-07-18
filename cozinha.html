@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel da Cozinha - ForgeBurger</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #222; color: #fff; padding: 20px; }
+        h1 { text-align: center; color: #ffca28; }
+        .container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        
+        .pedidos-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .pedido-card { background: #333; border: 2px solid #ffca28; border-radius: 8px; padding: 15px; width: 300px; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        .pedido-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #555; padding-bottom: 5px; margin-bottom: 10px; }
+        .pedido-header h3 { margin: 0; color: #ffca28; }
+        .status-badge { background: #ffca28; color: #222; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 12px; }
+        
+        .pedido-obs { font-style: italic; color: #aaa; background: #444; padding: 5px; border-radius: 4px; margin-top: 10px; }
+        .btn-entregue { background: #28a745; color: #fff; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; margin-top: 15px; font-weight: bold; width: 100%; transition: background 0.2s; }
+        .btn-entregue:hover { background: #218838; }
+    </style>
+</head>
+<body>
+
+    <h1>Painel de Pedidos 🍳</h1>
+    <div id="pedidos-container" class="pedidos-grid"></div>
+
+    <script>
+        async function carregarPedidos() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/pedidos');
+                
+                if (!response.ok) {
+                    throw new Error(`Erro do servidor: ${response.status}`);
+                }
+
+                const pedidos = await response.json();
+                console.log("Pedidos recebidos na cozinha:", pedidos);
+
+                const container = document.getElementById('pedidos-container');
+                if (!container) return;
+                
+                container.innerHTML = ""; 
+
+                if (pedidos.length === 0) {
+                    container.innerHTML = "<p style='text-align:center; color:#a0a0a0; font-size: 16px; margin-top: 20px;'>Nenhum pedido na chapa no momento. 😴</p>";
+                    return;
+                }
+
+                pedidos.forEach(pedido => {
+                    const card = document.createElement('div');
+                    card.classList.add('pedido-card'); 
+                    
+                    const nome = pedido.nome_cliente || "Cliente Sem Nome";
+                    const obs = pedido.observacao ? `<p class="pedido-obs"><strong>Obs:</strong> ${pedido.observacao}</p>` : "<p class=\"pedido-obs\"><em>Sem observações</em></p>";
+                    
+                    let itensHtml = "";
+                    if (pedido.itens && Array.isArray(pedido.itens)) {
+                        pedido.itens.forEach(item => {
+                            const qtd = item.quantity || item.quantidade || 1;
+                            const nomeItem = item.name || item.produto || "Item";
+                            itensHtml += `<li><strong>${qtd}x</strong> ${nomeItem}</li>`;
+                        });
+                    }
+
+                    // 🌟 AJUSTE: Passando o 'event' explicitamente no clique do botão
+                    card.innerHTML = `
+                        <div>
+                            <div class="pedido-header">
+                                <h3>Pedido #${pedido.id || 'N/A'}</h3>
+                                <span class="status-badge">${pedido.status || 'Pendente'}</span>
+                            </div>
+                            <p class="cliente-nome"><strong>Cliente:</strong> ${nome}</p>
+                            <ul class="pedido-itens-list">${itensHtml}</ul>
+                            ${obs}
+                        </div>
+                        <button class="btn-entregue" onclick="mudar_status(event, ${pedido.id})">
+                            ✅ Marcar como Entregue
+                        </button>
+                    `;
+                    
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error("Erro ao renderizar cards na tela:", error);
+            }
+        }
+
+        // 🌟 AJUSTE: Agora a função recebe o evento e manipula o botão perfeitamente
+        async function mudar_status(evt, pedidoId) {
+            if (!pedidoId) return;
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/atualizar-status/${pedidoId}`, {
+                    method: 'POST'
+                });
+
+                if (response.ok) {
+                    // Modifica o botão clicado usando o evento recebido por parâmetro
+                    const botaoClicado = evt.target;
+                    if (botaoClicado && botaoClicado.tagName === 'BUTTON') {
+                        botaoClicado.innerText = "Saindo da chapa... 🚀";
+                        botaoClicado.disabled = true; 
+                        botaoClicado.style.background = "#555"; 
+                    }
+
+                    // Aguarda 1 segundo antes de atualizar a lista de cards
+                    setTimeout(() => {
+                        carregarPedidos();
+                    }, 1000);
+                    
+                } else {
+                    alert("Erro ao atualizar o status do pedido no servidor.");
+                }
+            } catch (error) {
+                console.error("Erro na requisição:", error);
+                alert("Não foi possível conectar ao servidor.");
+            }
+        }
+
+        // Atualiza a cada 5 segundos automaticamente
+        setInterval(carregarPedidos, 5000);
+        // Roda imediatamente ao abrir a página
+        window.addEventListener('DOMContentLoaded', carregarPedidos);
+    </script> 
+</body>
+</html>
