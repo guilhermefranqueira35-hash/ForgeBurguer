@@ -103,9 +103,6 @@ body {
     transform: scale(1.1); 
 }
 
-/* ==========================================================================
-   GRID DE PRODUTOS (LAYOUT MOBILE)
-   ========================================================================== */
 .menu-container {
     padding: 0 20px;
 }
@@ -117,21 +114,21 @@ body {
 
 .menu-grid {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column; /* No celular, fica um embaixo do outro */
     gap: 15px;
 }
 
 .product-card {
     background-color: var(--card-bg);
     border-radius: 12px;
-    display: flex; /* Alinha imagem de um lado e texto do outro */
+    display: flex;
     overflow: hidden;
 }
 
 .product-img {
     width: 120px;
     height: 100%;
-    object-fit: cover; /* Não distorce a imagem */
+    object-fit: cover;
 }
 
 .product-info {
@@ -193,14 +190,15 @@ body {
    RESPONSIVIDADE (MEDIA QUERIES PARA TELAS MAIORES)
    ========================================================================== */
 @media (min-width: 768px) {
+    /* No computador ou tablet deitado, os cards ficam em duas ou mais colunas */
     .menu-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas iguais */
         gap: 20px;
     }
     
     .menu-container {
-        max-width: 1000px; 
+        max-width: 1000px; /* Centraliza o site e não deixa esticar infinito */
         margin: 0 auto;
     }
 }
