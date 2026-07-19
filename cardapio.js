@@ -294,6 +294,7 @@ products.forEach(product => observer.observe(product));
 const categoryButtons = document.querySelectorAll('.category-btn');
 const burgerSection = document.getElementById('burgers');
 const bebidasSection = document.getElementById('bebidas');
+const sobremesasSection = document.getElementById('sobremesas');
 
 categoryButtons.forEach(button => {
     button.addEventListener('click', (event) => {
@@ -307,8 +308,14 @@ categoryButtons.forEach(button => {
         if (targetSection === '#burgers') {
             burgerSection.classList.remove('hidden');
             bebidasSection.classList.add('hidden');
+            sobremesasSection.classList.add('hidden');
         } else if (targetSection === '#bebidas') {
             bebidasSection.classList.remove('hidden');
+            burgerSection.classList.add('hidden');
+            sobremesasSection.classList.add('hidden');
+        } else if (targetSection === '#sobremesas') {
+            sobremesasSection.classList.remove('hidden');
+            bebidasSection.classList.add('hidden');
             burgerSection.classList.add('hidden');
         }
     });
