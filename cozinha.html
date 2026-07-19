@@ -92,7 +92,7 @@
             if (!pedidoId) return;
 
             try {
-                const response = await fetch(`http://127.0.0.1:8000/atualizar-status/${pedidoId}`, {
+                const response = await fetch(`https://forgeburguer-2.onrender.com/atualizar-status/${pedidoId}`, {
                     method: 'POST'
                 });
 
