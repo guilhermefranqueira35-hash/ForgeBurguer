@@ -28,7 +28,7 @@
     <script>
         async function carregarPedidos() {
             try {
-                const response = await fetch('http://127.0.0.1:8000/pedidos');
+                const response = await fetch('https://forgeburguer-2.onrender.com/pedidos');
                 
                 if (!response.ok) {
                     throw new Error(`Erro do servidor: ${response.status}`);
