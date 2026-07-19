@@ -1,17 +1,6 @@
-# 1. Inicializa o Git na pasta do projeto
 git init
-
-# 2. Adiciona todos os arquivos (o .gitignore vai barrar o banco de dados)
 git add .
-
-# 3. Cria o seu primeiro ponto de salvamento (commit)
 git commit -m "First commit: ForgeBurger com painel de cozinha e link do WhatsApp"
-# 4. Garante que você está na branch principal (main)
 git branch -M main
-
-# 5. Conecte o seu terminal ao seu link do GitHub 
-# (Substitua o link abaixo pelo link do repositório que você criou no site do GitHub)
 git remote add origin https://github.com/guilhermefranqueira35-hash/ForgeBurguer.git
-
-# 6. Envie o código para o ar!
 git push -u origin main
