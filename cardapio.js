@@ -192,11 +192,11 @@ sendKitchenBtn.addEventListener('click', async (event) => {
             price: item.price,
             quantity: item.quantity
         })),
-        observacao: observation ? observation : null
+        observacao: cartObs.value.trim() ? cartObs.value.trim() : null
     };
 
     try {
-        const response = await fetch('https://forgeburguer-2.onrender.com/enviar-pedido/enviar-pedido', {
+        const response = await fetch('https://forgeburguer-2.onrender.com/enviar-pedido', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dadosPedido)
@@ -246,7 +246,7 @@ async function dispararCancelamento() {
     }
 
     try {
-        const response = await fetch(`https://forgeburguer-2.onrender.com/cancelar-pedido${idParaCancelar}`, {
+        const response = await fetch(`https://forgeburguer-2.onrender.com/cancelar-pedido/${idParaCancelar}`, {
             method: 'POST'
         });
 
@@ -337,7 +337,7 @@ if (cancelBtnElement) {
                 }
 
                 try {
-                    const response = await fetch(`https://forgeburguer-2.onrender.com/status-pedido${pedidoId}`);
+                    const response = await fetch(`https://forgeburguer-2.onrender.com/status-pedido/${pedidoId}`);
                     if (response.ok) {
                         const dados = await response.json();
 
