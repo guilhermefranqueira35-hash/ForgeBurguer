@@ -28,9 +28,11 @@
         <nav class="categories">
             <a href="#burgers" class="category-btn active">Burgers</a>
             <a href="#bebidas" class="category-btn">Bebidas</a>
+            <a href="#sobremesas" class="category-btn">Sobremesas</a>
         </nav>
 
         <main class="menu-container">
+
             <section id="burgers" class="menu-section">
                 <h2 class="opcoes">Hambúrgueres Artesanais</h2>
                 <div class="menu-grid">
@@ -139,8 +141,70 @@
                             </div>
                         </div>
                     </article>
+                    <article class="product-card">
+                        <img src="Imagens/guarana.webp" alt="Guaraná Lata" class="product-img">
+                        <div class="product-info">
+                            <h3>Guaraná Lata</h3>
+                            <p class="product-desc">Lata de 350ml trincando de gelada para acompanhar o seu burger.</p>
+                            <div class="product-price-action">
+                                <span class="price">R$ 6,00</span>
+                                <button class="add-to-cart-btn" data-name="Guaraná Lata" data-price="6.00">+</button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <img src="Imagens/sucodelaranja.webp" alt="Suco de Laranja" class="product-img">
+                        <div class="product-info">
+                            <h3>Suco de Laranja</h3>
+                            <p class="product-desc">Suco natural, fresco e saboroso.</p>
+                            <div class="product-price-action">
+                                <span class="price">R$ 12,00</span>
+                                <button class="add-to-cart-btn" data-name="Suco de Laranja" data-price="12.00">+</button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <img src="Imagens/sucodeuva.webp" alt="Suco de Uva" class="product-img">
+                        <div class="product-info">
+                            <h3>Suco de Uva</h3>
+                            <p class="product-desc">Suco natural, fresco e saboroso.</p>
+                            <div class="product-price-action">
+                                <span class="price">R$ 12,00</span>
+                                <button class="add-to-cart-btn" data-name="Suco de Uva" data-price="12.00">+</button>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </section>
+
+            <section id="sobremesas" class="menu-section hidden">
+                <h2 class="opcoes">Sobremesas Deliciosas</h2>
+                <div class="menu-grid">
+                    <article class="product-card">
+                        <img src="Imagens/pudim.webp" alt="Pudim" class="product-img">
+                        <div class="product-info">
+                            <h3>Pudim</h3>
+                            <p class="product-desc">Pudim de leite condensado, cremoso e delicioso.</p>
+                            <div class="product-price-action">
+                                <span class="price">R$ 8,00</span>
+                                <button class="add-to-cart-btn" data-name="Pudim" data-price="8.00">+</button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <img src="Imagens/sorvete.jpg" alt="Sorvete" class="product-img">
+                        <div class="product-info">
+                            <h3>Sorvete</h3>
+                            <p class="product-desc">Sorvete de baunilha, cremoso e delicioso.</p>
+                            <div class="product-price-action">
+                                <span class="price">R$ 6,00</span>
+                                <button class="add-to-cart-btn" data-name="Sorvete" data-price="6.00">+</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
         </main>
 
         <div id="cart-footer" class="cart-footer hidden">
