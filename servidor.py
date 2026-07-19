@@ -27,7 +27,11 @@ class Pedido(BaseModel):
     observacao: Optional[str] = None
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-PATH_BANCO = os.path.join(BASE_DIR, 'forgeburger.db')
+
+if os.name != 'nt':  # Se NÃO for Windows (ou seja, se for o Render)
+    PATH_BANCO = '/tmp/forgeburger.db'
+else:
+    PATH_BANCO = os.path.join(BASE_DIR, 'forgeburger.db')
 
 def inicializar_banco():
     conn = sqlite3.connect(PATH_BANCO)
